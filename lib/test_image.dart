@@ -5,7 +5,7 @@ import 'package:ai_pdf_official/image_api.dart';
 import 'package:dio/dio.dart';
 
 class ImageDef {
-  Future<void> getImageDefinition() async {
+  Future<String?> getImageDefinition() async {
     File f = File("lib/test.jpg");
     var x = await f.readAsBytes();
     //print(base64Encode(x));
@@ -49,10 +49,11 @@ class ImageDef {
 
     if (response.statusCode == 200) {
       //200 success(just like 404)
-      GenerateImage im = GenerateImage();
-      im.getImage(json.encode(response.data));
+      String encodedData = json.encode(response.data);
+      var decodedData = json.decode(encodedData);
+      return decodedData ['choices'][0]['message']['content'];
     } else {
-      print(response.statusMessage);
+      return null;
     }
   }
 }

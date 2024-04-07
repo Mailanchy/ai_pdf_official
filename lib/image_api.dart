@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:ai_pdf_official/explainwidget.dart';
 import 'package:dio/dio.dart';
 
 class GenerateImage {
-  Future<void> getImage(String definition) async {
+  Future<String?> getImage(String definition) async {
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
@@ -12,7 +13,7 @@ class GenerateImage {
       "model": "dall-e-3",
       "prompt": definition,
       "n": 1,
-      "size": "1024x1024",
+      "size": "512x512",
     });
     var dio = Dio();
     var response = await dio.request(
@@ -25,9 +26,10 @@ class GenerateImage {
     );
 
     if (response.statusCode == 200) {
-      (json.encode(response.data));
+      String encodedData = (json.encode(response.data));
+      return json.decode(encodedData)['data'][1]['url'];
     } else {
-      print(response.statusMessage);
+      return null;
     }
   }
 }
