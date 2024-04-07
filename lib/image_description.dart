@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:ai_pdf_official/image_api.dart';
 import 'package:dio/dio.dart';
 
 class ImageDef {
@@ -51,7 +50,7 @@ class ImageDef {
       //200 success(just like 404)
       String encodedData = json.encode(response.data);
       var decodedData = json.decode(encodedData);
-      return decodedData ['choices'][0]['message']['content'];
+      return decodedData['choices'][0]['message']['content'];
     } else {
       return null;
     }

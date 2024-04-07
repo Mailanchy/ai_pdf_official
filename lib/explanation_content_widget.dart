@@ -1,21 +1,22 @@
-import 'package:ai_pdf_official/image_api.dart';
-import 'package:ai_pdf_official/open_ai_api.dart';
-import 'package:ai_pdf_official/pdf_view.dart';
-import 'package:ai_pdf_official/test_image.dart';
+import 'package:ai_pdf_official/image_description.dart';
+import 'package:ai_pdf_official/image_generator.dart';
+import 'package:ai_pdf_official/text_explenation.dart';
 import 'package:flutter/material.dart';
 
-class ExplainWidget extends StatefulWidget {
-  ExplainWidget({super.key, required this.selectedText});
+class ExplanationContentWidget extends StatefulWidget {
+  ExplanationContentWidget({super.key, required this.selectedText});
 
   String selectedText;
 
   @override
-  State<ExplainWidget> createState() => _ExplainWidgetState();
+  State<ExplanationContentWidget> createState() =>
+      _ExplanationContentWidgetState();
 }
 
-class _ExplainWidgetState extends State<ExplainWidget> {
+class _ExplanationContentWidgetState extends State<ExplanationContentWidget> {
   String? explanation;
   String? imageLink;
+  List<String?> googleLink = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +49,11 @@ class _ExplainWidgetState extends State<ExplainWidget> {
                     });
                     GenerateImage gi = GenerateImage();
                     if (explanation != null) {
-                      gi.getImage(explanation!).then((value) {
+                      gi.getAIimage(explanation!).then((value) {
                         imageLink = value;
+                        gi.getGoogleImage(explanation!).then((value) {
+                          googleLink = value;
+                        });
                       });
                     } //if
                   },

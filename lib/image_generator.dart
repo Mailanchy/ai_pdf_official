@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:ai_pdf_official/explainwidget.dart';
+
 import 'package:dio/dio.dart';
 
 class GenerateImage {
-  Future<String?> getImage(String definition) async {
+  Future<String?> getAIimage(String definition) async {
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
@@ -30,6 +30,28 @@ class GenerateImage {
       return json.decode(encodedData)['data'][1]['url'];
     } else {
       return null;
+    }
+  }
+
+//Google image api function
+  Future<List<String?>> getGoogleImage(String definition) async {
+    List<String?> link = [];
+    var dio = Dio();
+    var response = await dio.request(
+      'https://serpapi.com/search.json?q=hello&engine=google_images&ijn=0&api_key=REMOVED_SECRET',
+      options: Options(
+        method: 'GET',
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      String encodedResponse = json.encode(response.data);
+      for (int i = 0; i < 2; i++) {
+        link[i] = json.decode(encodedResponse)['images_results'][i]['original'];
+      }
+      return link;
+    } else {
+      return []; //empty array representation = []
     }
   }
 }

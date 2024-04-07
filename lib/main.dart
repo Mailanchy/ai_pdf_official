@@ -1,8 +1,5 @@
-import 'package:ai_pdf_official/explainwidget.dart';
 import 'package:ai_pdf_official/pdf_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'bottom_sheet.dart';
 
@@ -35,11 +32,11 @@ class _MyAppState extends State<MyApp> {
               },
             ),
           ),
-          MyDraggableSheet(passText: passText,)
+          MyDraggableSheet(
+            passText: passText,
+          )
         ],
       ),
     );
   }
 }
-
-

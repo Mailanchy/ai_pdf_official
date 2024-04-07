@@ -1,4 +1,4 @@
-import 'package:ai_pdf_official/explainwidget.dart';
+import 'package:ai_pdf_official/explanation_content_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyDraggableSheet extends StatefulWidget {
@@ -52,50 +52,47 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
 
   @override
   Widget build(BuildContext context) {
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return DraggableScrollableSheet(
-          key: _sheet,
-          initialChildSize: 0.1,
-          maxChildSize: 1,
-          minChildSize: 0,
-          expand: true,
-          snap: true,
-          snapSizes: [
-            60 / constraints.maxHeight,
-            0.5,
-          ],
-          controller: _controller,
-          builder: (BuildContext context, ScrollController scrollController) {
-            return DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
+    return LayoutBuilder(builder: (context, constraints) {
+      return DraggableScrollableSheet(
+        key: _sheet,
+        initialChildSize: 0.1,
+        maxChildSize: 1,
+        minChildSize: 0,
+        expand: true,
+        snap: true,
+        snapSizes: [
+          60 / constraints.maxHeight,
+          0.5,
+        ],
+        controller: _controller,
+        builder: (BuildContext context, ScrollController scrollController) {
+          return DecoratedBox(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
               ),
-              child: Material(
-                child: CustomScrollView(
-                  controller: scrollController,
-                  slivers: [
-                    const SliverToBoxAdapter(
-                      child: Text('Title'),
-                    ),
-                    SliverList.list(
-                      children: [
-                        ExplainWidget(selectedText: widget.passText)
-                        // Text('Content'),
-                      ],
-                    ),
-                  ],
-                ),
+            ),
+            child: Material(
+              child: CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  const SliverToBoxAdapter(
+                    child: Text('Title'),
+                  ),
+                  SliverList.list(
+                    children: [
+                      ExplanationContentWidget(selectedText: widget.passText)
+                      // Text('Content'),
+                    ],
+                  ),
+                ],
               ),
-            );
-          },
-        );
-      }
-    );
+            ),
+          );
+        },
+      );
+    });
   }
 }
