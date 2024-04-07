@@ -22,7 +22,7 @@ class _ExplainWidgetState extends State<ExplainWidget> {
         color: Colors.grey,
         child: Column(
           children: [
-            Text(widget.selectedText),
+            if (widget.selectedText != "") Text(widget.selectedText),
             TextButton(
               onPressed: () {
                 OpenAI ai = OpenAI();
@@ -35,7 +35,6 @@ class _ExplainWidgetState extends State<ExplainWidget> {
               child: Text("Explain"),
             ),
             if (explanation != null) Text(explanation!),
-            //null string wont accept so when the explanation is null empty string prints
             if (imageLink != null) Image.network(imageLink!)
           ],
         ),

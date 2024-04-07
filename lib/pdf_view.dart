@@ -13,9 +13,7 @@ Function(String) selectedText;
           'assets/test.pdf',
         onTextSelectionChanged: (details) {
           String? str = details.selectedText;
-          if(str != null){
-            selectedText(str);
-          }
+          selectedText(str ?? "");
 
         },
       )
