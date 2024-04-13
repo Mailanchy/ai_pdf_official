@@ -70,16 +70,31 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
             ),
             child: Material(
               child: CustomScrollView(
                 controller: scrollController,
                 slivers: [
-                  const SliverToBoxAdapter(
-                    child: Text('Title'),
+                  SliverToBoxAdapter(
+                    child: Column(// Add a Column here for the indicator
+                        children: [
+                      Center(
+                        // Center the handle horizontally
+                        child: Container(
+                          // Your drag handle
+                          margin: const EdgeInsets.only(top: 8),
+                          width: 40,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(2.5),
+                          ),
+                        ),
+                      ),
+                    ]),
                   ),
                   SliverList.list(
                     children: [

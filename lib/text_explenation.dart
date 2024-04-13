@@ -7,18 +7,18 @@ class OpenAI {
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer REMOVED_SECRET'
+      'Bearer REMOVED_SECRET'
     }; //header of http protocol
 
     var data = json.encode({
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        {
-          "role": "system",
-          "content": "you are a angry tutor who doesnt love students"
-        },
-        {"role": "user", "content": query}
-      ]
+    "model": "gpt-3.5-turbo",
+    "messages": [
+    {
+    "role": "system",
+    "content": "We're developing an innovative AI-powered mobile PDF reader designed to enhance the educational experience for students across various disciplines. Our application focuses on revolutionizing how students engage with complex learning materials, particularly within the realm of digital education.At the core of our application lies an intuitive text selection and explanation feature. Users can seamlessly select any portion of text within a PDF – whether it's a word, sentence, or entire paragraph. Once a selection is made, the application displays the selected text alongside an 'Explain' button.Your task is to provide an explanation for the selected text segment in a clear and easily understandable language. The explanation should aim to elucidate the meaning and context of the text segment, ensuring that it is comprehensible to users from diverse educational backgrounds.Please prioritize clarity, conciseness, and accuracy in your response. Remember, the goal is to streamline the learning process and empower students to gain instant clarity without disrupting their study flow.Thank you for your assistance in enriching our application's functionality!"
+    },
+    {"role": "user", "content": query}
+    ]
     }); //data of http protocol
 
     Dio dio = Dio(); //create object for class Dio
