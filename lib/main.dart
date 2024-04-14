@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
                   });
                 });
               },
+              child: const Icon(Icons.screenshot_monitor),
             ),
           )
         ],
