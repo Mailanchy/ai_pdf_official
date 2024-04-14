@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:ai_pdf_official/pdf_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -43,14 +44,16 @@ class _MyAppState extends State<MyApp> {
             passText: passText,
             image: image,
           ),
-          FloatingActionButton(
-            onPressed: () {
-              controller.capture().then((value) {
-                setState(() {
-                  image = value;
+          SafeArea(
+            child: FloatingActionButton(
+              onPressed: () {
+                controller.capture().then((value) {
+                  setState(() {
+                    image = value;
+                  });
                 });
-              });
-            },
+              },
+            ),
           )
         ],
       ),

@@ -39,7 +39,7 @@ class GenerateImage {
     List<String?> link = [];
     var dio = Dio();
     var response = await dio.request(
-      'https://serpapi.com/search.json?q=hello&engine=google_images&ijn=0&api_key=REMOVED_SECRET',
+      'https://serpapi.com/search.json?q=${'Image search: $definition'}&engine=google_images&ijn=0&api_key=REMOVED_SECRET',
       options: Options(
         method: 'GET',
       ),
@@ -47,8 +47,15 @@ class GenerateImage {
 
     if (response.statusCode == 200) {
       String encodedResponse = json.encode(response.data);
-      for (int i = 0; i < 2; i++) {
-        link[i] = json.decode(encodedResponse)['images_results'][i]['original'];
+      final images =
+          json.decode(encodedResponse)['images_results'] as List<dynamic>;
+      for (int i = 0; i < images.length; i++) {
+        try {
+          link.add(
+              json.decode(encodedResponse)['images_results'][i]['original']);
+        } catch (e) {
+          print(e);
+        }
       }
       print(link);
       return link;

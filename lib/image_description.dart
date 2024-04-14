@@ -22,7 +22,7 @@ class ImageDef {
           "content": [
             {
               "type": "text",
-              "text": "What’s in this image?",
+              "text": "If the given image contains a diagram, please create a search query for the diagram. Your job is to only create query for the diagram, but you may use the surrounding content to get context. The query should be sufficient for passing into google image search to search for this kind of diagram images.",
             },
             {
               "type": "image_url",

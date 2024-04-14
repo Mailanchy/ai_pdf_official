@@ -33,8 +33,12 @@ class _ExplanationContentWidgetState extends State<ExplanationContentWidget> {
           children: [
             if (widget.selectedText != "") Text(widget.selectedText),
             if (explanation != null) Text(explanation!),
-            if (imageLink != null) Image.network(imageLink!),
-
+            if (googleLink.length >= 2) Row(
+              children: [
+                Expanded(child: Image.network(googleLink[0] ?? '#')),
+                Expanded(child: Image.network(googleLink[1] ?? '#')),
+              ],
+            ),
             Row(
               children: [
                 SizedBox(width: 3),
@@ -77,23 +81,20 @@ class _ExplanationContentWidgetState extends State<ExplanationContentWidget> {
                       id
                           .getImageDefinition(widget.selectedImage)
                           .then((response) {
-                        setState(() {
-                          explanation = response;
+                        GenerateImage gi = GenerateImage();
+
+                        // gi.getAIimage(response!).then((value) {
+                        //   setState(() {
+                        //     imageLink = value;
+                        //   });
+                        // });
+
+                        gi.getGoogleImage(response!).then((value) {
+                          setState(() {
+                            googleLink = value;
+                          });
                         });
                       });
-                      GenerateImage gi = GenerateImage();
-
-                      setState(() {
-                        if (explanation != null) {
-                          gi.getAIimage(explanation!).then((value) {
-                            imageLink = value;
-                            gi.getGoogleImage(explanation!).then((value) {
-                              googleLink = value;
-                            });
-                          });
-                        }
-                      });
-//if
                     },
                     child: Text("Illustrate"),
                   ),
