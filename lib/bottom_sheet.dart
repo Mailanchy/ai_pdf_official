@@ -1,10 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:ai_pdf_official/explanation_content_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyDraggableSheet extends StatefulWidget {
   final String passText;
+  final Uint8List? image;
 
-  const MyDraggableSheet({super.key, required this.passText});
+  const MyDraggableSheet({super.key, required this.passText, this.image});
 
   @override
   State<MyDraggableSheet> createState() => _MyDraggableSheetState();
@@ -98,7 +101,7 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
                   ),
                   SliverList.list(
                     children: [
-                      ExplanationContentWidget(selectedText: widget.passText)
+                      ExplanationContentWidget(selectedText: widget.passText,selectedImage: widget.image,)
                       // Text('Content'),
                     ],
                   ),

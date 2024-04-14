@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:ai_pdf_official/image_description.dart';
 import 'package:ai_pdf_official/image_generator.dart';
 import 'package:ai_pdf_official/text_explenation.dart';
@@ -6,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ExplanationContentWidget extends StatefulWidget {
-  ExplanationContentWidget({super.key, required this.selectedText});
+  ExplanationContentWidget(
+      {super.key, required this.selectedText, this.selectedImage});
 
   String selectedText;
+  Uint8List? selectedImage;
 
   @override
   State<ExplanationContentWidget> createState() =>
@@ -30,6 +34,7 @@ class _ExplanationContentWidgetState extends State<ExplanationContentWidget> {
             if (widget.selectedText != "") Text(widget.selectedText),
             if (explanation != null) Text(explanation!),
             if (imageLink != null) Image.network(imageLink!),
+
             Row(
               children: [
                 SizedBox(width: 3),
@@ -69,20 +74,26 @@ class _ExplanationContentWidgetState extends State<ExplanationContentWidget> {
                     ),
                     onPressed: () {
                       ImageDef id = ImageDef();
-                      id.getImageDefinition().then((response) {
+                      id
+                          .getImageDefinition(widget.selectedImage)
+                          .then((response) {
                         setState(() {
                           explanation = response;
                         });
                       });
                       GenerateImage gi = GenerateImage();
-                      if (explanation != null) {
-                        gi.getAIimage(explanation!).then((value) {
-                          imageLink = value;
-                          gi.getGoogleImage(explanation!).then((value) {
-                            googleLink = value;
+
+                      setState(() {
+                        if (explanation != null) {
+                          gi.getAIimage(explanation!).then((value) {
+                            imageLink = value;
+                            gi.getGoogleImage(explanation!).then((value) {
+                              googleLink = value;
+                            });
                           });
-                        });
-                      } //if
+                        }
+                      });
+//if
                     },
                     child: Text("Illustrate"),
                   ),

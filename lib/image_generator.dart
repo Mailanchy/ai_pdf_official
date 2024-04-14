@@ -27,6 +27,7 @@ class GenerateImage {
 
     if (response.statusCode == 200) {
       String encodedData = (json.encode(response.data));
+      print(json.decode(encodedData)['data'][1]['url']);
       return json.decode(encodedData)['data'][1]['url'];
     } else {
       return null;
@@ -49,6 +50,7 @@ class GenerateImage {
       for (int i = 0; i < 2; i++) {
         link[i] = json.decode(encodedResponse)['images_results'][i]['original'];
       }
+      print(link);
       return link;
     } else {
       return []; //empty array representation = []
