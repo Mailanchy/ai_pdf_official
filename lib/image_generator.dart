@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -7,7 +8,7 @@ class GenerateImage {
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer REMOVED_SECRET'
+          'Bearer ${dotenv.env['OPENAI_API_KEY']}'
     };
     var data = json.encode({
       "model": "dall-e-3",
@@ -39,7 +40,7 @@ class GenerateImage {
     List<String?> link = [];
     var dio = Dio();
     var response = await dio.request(
-      'https://serpapi.com/search.json?q=${'Image search: $definition'}&engine=google_images&ijn=0&api_key=REMOVED_SECRET',
+      'https://serpapi.com/search.json?q=${'Image search: $definition'}&engine=google_images&ijn=0&api_key=${dotenv.env['SERPAPI_KEY']}',
       options: Options(
         method: 'GET',
       ),

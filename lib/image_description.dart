@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -12,7 +13,7 @@ class ImageDef {
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer REMOVED_SECRET',
+          'Bearer ${dotenv.env['OPENAI_API_KEY']}',
     };
     var data = json.encode({
       "model": "gpt-4-vision-preview",

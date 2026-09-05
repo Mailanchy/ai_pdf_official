@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:typed_data';
 
 import 'package:ai_pdf_official/pdf_view.dart';
@@ -8,7 +9,8 @@ import 'package:screenshot/screenshot.dart';
 import 'bottom_sheet.dart';
 import 'image_description.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   runApp(MyApp());
 }
 

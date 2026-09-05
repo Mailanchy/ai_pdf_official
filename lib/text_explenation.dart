@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -7,7 +8,7 @@ class OpenAI {
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-      'Bearer REMOVED_SECRET'
+      'Bearer ${dotenv.env['OPENAI_API_KEY']}'
     }; //header of http protocol
 
     var data = json.encode({
