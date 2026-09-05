@@ -1,16 +1,13 @@
-# ai_pdf_official
+# AI PDF Official
 
-A new Flutter project.
+An innovative AI-powered mobile PDF reader designed to enhance the educational experience for students. This application revolutionizes how users engage with complex learning materials by integrating advanced AI capabilities directly into the reading workflow.
 
-## Getting Started
+## Features
+- **Intuitive Text Selection & Explanation**: Select any word, sentence, or paragraph in a PDF and get instant, easy-to-understand explanations powered by OpenAI (GPT-3.5-turbo).
+- **Image Generation & Search**: Harnesses DALL-E 3 and SerpApi to generate or search for contextual images related to your reading material.
+- **Image Description**: Employs GPT-4 Vision to analyze and explain diagrams and images directly within the app.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
+- **Frontend**: Flutter / Dart
+- **AI Models**: OpenAI GPT-3.5, GPT-4 Vision, DALL-E 3
+- **Search**: SerpApi (Google Images search)
